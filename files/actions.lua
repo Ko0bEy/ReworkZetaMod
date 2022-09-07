@@ -25,6 +25,8 @@ new_zeta_action = 	{
 			local active_wand_encountered = false
 			local actions_added = false
 
+			local only_modifiers = true
+
 			if ( children ~= nil ) and ( inventory ~= nil ) then
 				local active_wand = ComponentGetValue2( inventory, "mActiveItem" )
 
@@ -70,9 +72,13 @@ new_zeta_action = 	{
 						if ( data.id == action_id ) then
 							local rec = check_recursion( data, recursion_level )
 							if ( rec > -1 ) then
-								--dont_draw_actions = true
+								if data.type == ACTION_TYPE_MODIFIER then
+									dont_draw_actions = true
+								else
+									only_modifiers = false
+								end
 								data.action( rec )
-								--dont_draw_actions = false
+								dont_draw_actions = false
 							end
 							break
 						end
@@ -80,8 +86,10 @@ new_zeta_action = 	{
 					end
 				end
 
+			if only_modifiers then
+				draw_actions( 1, true )
+			end
 
-			--draw_actions( 1, true )
 		end,
 	}
 
