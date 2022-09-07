@@ -9263,9 +9263,9 @@ actions =
 						if ( data.id == action_id ) then
 							local rec = check_recursion( data, recursion_level )
 							if ( rec > -1 ) then
-								dont_draw_actions = true
+								--dont_draw_actions = true
 								data.action( rec )
-								dont_draw_actions = false
+								--dont_draw_actions = false
 							end
 							break
 						end
