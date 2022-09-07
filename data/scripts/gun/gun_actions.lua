@@ -9274,7 +9274,7 @@ actions =
 				end
 
 			
-			draw_actions( 1, true )
+			--draw_actions( 1, true )
 		end,
 	},
 	{
