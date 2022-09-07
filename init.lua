@@ -1,14 +1,22 @@
 -- all functions below are optional and can be left out
-
+dofile_once("data/scripts/lib/utilities.lua")
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/rework_Zeta/files/actions.lua")
+--[[function OnModInit()
+	dofile_once("mods/rework_Zeta/files/actions.lua")
+	dofile_once("data/scripts/gun/gun_actions.lua")
+	for i, action in actions do
+		if (action.id == "ZETA") then
+			actions[i] = new_zeta_action
+		end
+	end
+end]]--
 --[[
 
 function OnModPreInit()
 	print("Mod - OnModPreInit()") -- First this is called for all mods
 end
 
-function OnModInit()
-	print("Mod - OnModInit()") -- After that this is called for all mods
-end
+
 
 function OnModPostInit()
 	print("Mod - OnModPostInit()") -- Then this is called for all mods
