@@ -25,6 +25,10 @@ new_zeta_action = 	{
 			local active_wand_encountered = false
 			local actions_added = false
 
+			local wands_since_active_wand = -1
+
+			local iter = iteration or 1
+
 			local only_modifiers = true
 
 			if ( children ~= nil ) and ( inventory ~= nil ) then
@@ -38,9 +42,11 @@ new_zeta_action = 	{
 							for k,wand_id in ipairs( wands ) do
 								if ( wand_id == active_wand ) then
 									active_wand_encountered = true
-
 								end
-								if ( wand_id ~= active_wand ) and EntityHasTag( wand_id, "wand" ) and active_wand_encountered and not actions_added then
+								if active_wand_encountered then
+									wands_since_active_wand = wands_since_active_wand + 1
+								end
+								if ( wand_id ~= active_wand ) and EntityHasTag( wand_id, "wand" ) and ( wands_since_active_wand == iter ) and not actions_added then
 									local spells = EntityGetAllChildren( wand_id )
 
 									if ( spells ~= nil ) then
@@ -77,7 +83,12 @@ new_zeta_action = 	{
 								else
 									only_modifiers = false
 								end
-								data.action( rec )
+								if data.id == "ZETA" then
+									data.action( rec, iter + 1 )
+								else
+									data.action( rec )
+								end
+
 								dont_draw_actions = false
 							end
 							break
