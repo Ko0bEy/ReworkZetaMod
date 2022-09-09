@@ -1,0 +1,8 @@
+	<Mod
+		name="Rework Zeta"
+	    description="My First Mod: Reworks Zeta"
+		tags="spells"
+		dont_upload_folders=".idea"
+		dont_upload_files=".gitignore"
+	>
+	</Mod>
